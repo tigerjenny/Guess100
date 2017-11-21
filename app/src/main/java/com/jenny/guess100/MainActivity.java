@@ -12,6 +12,10 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     int ran_num = new Random().nextInt(100)+1;
+    private EditText edNum;
+    private TextView txSecret;
+    private TextView txInfo;
+    private Button btSend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,20 +24,23 @@ public class MainActivity extends AppCompatActivity {
         this.findViews();
     }
     public void findViews(){
-        EditText edNum = (EditText) findViewById(R.id.number);
-        TextView txSecret = (TextView) findViewById(R.id.secret);
-        TextView txInfo = (TextView) findViewById(R.id.info);
-        Button btSend = (Button) findViewById(R.id.send);
+        edNum = (EditText) findViewById(R.id.number);
+        txSecret = (TextView) findViewById(R.id.secret);
+        txInfo = (TextView) findViewById(R.id.info);
+        btSend = (Button) findViewById(R.id.send);
 
         txSecret.setText(Integer.toString(ran_num));
     }
+
+    int num2 = 0;
+    int num3 = 100 ;
+
     public void num (View view) {
         EditText edNum = (EditText) findViewById(R.id.number);
         int num = Integer.parseInt(edNum.getText().toString());
-        int num2 = 0 ;
-        int num3 = 100 ;
+
         if (num > ran_num ){
-            num = num2;
+            num3 = num;
             new AlertDialog.Builder(this)
                     .setMessage(num2 +" to "+ num3)
                     .setTitle("Messenge")
@@ -41,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                     .show();
 
         }else if (num < ran_num){
-            num3= num;
+            num2 = num;
             new AlertDialog.Builder(this)
                     .setMessage(num+" to "+num3)
                     .setTitle("Messenge")
